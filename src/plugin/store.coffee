@@ -299,7 +299,7 @@ class Annotator.Plugin.Store extends Annotator.Plugin
   #
   # Returns nothing.
   _onLoadAnnotationsFromSearch: (data={}) =>
-    this._onLoadAnnotations(data.rows || [])
+    this._onLoadAnnotations(data.items || [])
 
   # Public: Dump an array of serialized annotations
   #

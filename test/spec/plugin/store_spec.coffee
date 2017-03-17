@@ -230,14 +230,14 @@ describe "Annotator.Plugin.Store", ->
       assert.deepEqual(store.annotations, dataAll)
 
   describe "_onLoadAnnotationsFromSearch", ->
-    it "should call Store#_onLoadAnnotations() with data.rows", ->
+    it "should call Store#_onLoadAnnotations() with data.items", ->
       sinon.stub(store, '_onLoadAnnotations')
 
-      data = {rows: [{}, {}, {}]}
+      data = {items: [{}, {}, {}]}
       store._onLoadAnnotationsFromSearch(data)
-      assert.deepEqual(store._onLoadAnnotations.lastCall.args[0], data.rows)
+      assert.deepEqual(store._onLoadAnnotations.lastCall.args[0], data.items)
 
-    it "should default to an empty array if no data.rows are provided", ->
+    it "should default to an empty array if no data.items are provided", ->
       sinon.stub(store, '_onLoadAnnotations')
 
       store._onLoadAnnotationsFromSearch()
