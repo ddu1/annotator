@@ -139,6 +139,22 @@ Util.nodeFromXPath = (xp, root) ->
 
   node
 
+Util.nodeFromSubXPath = (xp, root) ->
+  steps = xp.substring(1).split("/")
+  tag = steps[0].split('[')[0]
+  allChildren = root.childNodes
+  for node in allChildren
+    if node.nodeType == 1 and node.tagName.toLowerCase() == tag
+      subxp = "/" + steps.slice(1).join("/")
+      try
+        node = document.evaluate('.' + subxp, node, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
+        if node
+          return node
+      catch exception
+        continue
+
+  null
+
 Util.escape = (html) ->
   html
     .replace(/&(?!\w+;)/g, '&amp;')

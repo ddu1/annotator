@@ -105,7 +105,7 @@ class Annotator extends Delegator
           if annotation.text
             $(field).html(Util.escape(annotation.text))
           else
-            $(field).html("<i>#{_t 'No Comment'}</i>")
+            $(field).html("<i>#{_t 'No Transcription'}</i>")
           this.publish('annotationViewerTextField', [field, annotation])
       })
       .element.appendTo(@wrapper).bind({
@@ -125,7 +125,7 @@ class Annotator extends Delegator
       .on('save', this.onEditorSubmit)
       .addField({
         type: 'textarea',
-        label: _t('Comments') + '\u2026'
+        label: _t('Transcription') + '\u2026'
         load: (field, annotation) ->
           $(field).find('textarea').val(annotation.text || '')
         submit: (field, annotation) ->

@@ -485,14 +485,14 @@ class Annotator.Plugin.Store extends Annotator.Plugin
     message = Annotator._t("Sorry we could not ") + action + Annotator._t(" this annotation")
 
     if xhr._action == 'search'
-      message = Annotator._t("Sorry we could not search the store for annotations")
+      message = Annotator._t("Sorry we could not search the webcorpus server for annotations")
     else if xhr._action == 'read' && !xhr._id
-      message = Annotator._t("Sorry we could not ") + action + Annotator._t(" the annotations from the store")
+      message = Annotator._t("Sorry we could not ") + action + Annotator._t(" the annotations from the webcorpus server")
 
     switch xhr.status
       when 401 then message = Annotator._t("Sorry you are not allowed to ") + action + Annotator._t(" this annotation")
-      when 404 then message = Annotator._t("Sorry we could not connect to the annotations store")
-      when 500 then message = Annotator._t("Sorry something went wrong with the annotation store")
+      when 404 then message = Annotator._t("Sorry we could not connect to the webcorpus server")
+      when 500 then message = Annotator._t("Sorry something went wrong with the webcorpus server")
 
     Annotator.showNotification message, Annotator.Notification.ERROR
 

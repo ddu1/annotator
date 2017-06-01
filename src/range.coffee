@@ -40,7 +40,12 @@ Range.sniff = (r) ->
 Range.nodeFromXPath = (xpath, root=document) ->
   evaluateXPath = (xp, nsResolver=null) ->
     try
-      document.evaluate('.' + xp, root, nsResolver, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
+      node = document.evaluate('.' + xp, root, nsResolver, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
+      if node
+        return node
+      node = Util.nodeFromSubXPath(xp, root)
+      if node
+        return node
     catch exception
       # There are cases when the evaluation fails, because the
       # HTML documents contains nodes with invalid names,
